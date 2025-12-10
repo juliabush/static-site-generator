@@ -14,8 +14,9 @@ class TestHTMLNode(unittest.TestCase):
         self.assertEqual(node, node2)
 
     def test_not_eq(self):
-        node = HTMLNode("h1", "I love dogs", )
-        node2 = HTMLNode("p", "Cats are the best", )
+        # children parameter represent potencially nested HTML tags
+        node = HTMLNode("h1", "I love dogs", [child1], {"class": "header"})
+        node2 = HTMLNode("p", "Cats are the best", [child2], {"class": "paragraph", "id": "cats"} )
         self.assertNotEqual(node, node2)
 
 if __name__ == "__main__":
