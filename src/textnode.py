@@ -20,6 +20,6 @@ class TextNode:
     else:
         return True
 
-    def __repr__()
+    def __repr__(self)
     printNode = new TextNode()
     return f"textNode({this.text, this.text_type, this.url})"
