@@ -7,3 +7,13 @@ class HTMLNode:
     
     def to_html(self):
         raise NotImplementedError
+    
+    def props_to_html(self):
+        if self.props == None or self.props == {}:
+            return ""
+        else:
+            json_values = JSON.parse(self.props)
+            return f"href={json_values.href} target={json_values.target}"
+
+    def __repr__(self):
+        return f"HTMLNode({self.tag}, {self.value}, {self.children}, {self.props})"
