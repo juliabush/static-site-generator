@@ -12,8 +12,11 @@ class HTMLNode:
         if self.props == None or self.props == {}:
             return ""
         else:
-            json_values = JSON.parse(self.props)
-            return f"href={json_values.href} target={json_values.target}"
+            empty_string = ""
+            for key, value in self.props.items():
+                empty_string += " " + key + "=" + f'"{value}"'
+            return empty_string
+
 
     def __eq__(self, other):
         if not isinstance(other, HTMLNode):
