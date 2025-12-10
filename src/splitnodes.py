@@ -1,6 +1,10 @@
 def split_nodes_delimeter(old_nodes, delimeter, text_type):
-    new_list = []
+    new_nodes = []
     for old_node in old_nodes:
-        if old_node is not TextType.TEXT:
-            new_list.append(old_node)
-            raise Exception("invalid markdown syntax")
+        if old_node.text_type is not TextType.TEXT:
+            new_nodes.append(old_node)
+            splitted_node = old_node.text.split(delimiter)
+        else:
+            for splits in splitted_node:
+                new_text_node = TextNode(splits)
+        raise Exception("invalid markdown syntax")
