@@ -28,11 +28,13 @@ class HTMLNode:
 
 
 class LeafNode(HTMLNode):
-    def __init__(self, value, tag):
-        super().__init__(value=value, tag=tag)
+    def __init__(self, tag, value, props):
+        super().__init__(tag=tag, value=value)
 
     def to_html(self):
         if self.value == None:
             raise ValueError
         if self.tag == None:
             return self.value
+        if self.tag is not None:
+            
