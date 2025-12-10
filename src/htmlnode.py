@@ -28,8 +28,8 @@ class HTMLNode:
 
 
 class LeafNode(HTMLNode):
-    def __init__(self, tag, value, props):
-        super().__init__(tag=tag, value=value)
+    def __init__(self, tag, value, props=None):
+        super().__init__(tag=tag, value=value, props=props)
 
     def to_html(self):
         if self.value == None:
@@ -37,4 +37,5 @@ class LeafNode(HTMLNode):
         if self.tag == None:
             return self.value
         if self.tag is not None:
-            
+            attributes = self.props_to_html()
+            return f"<{self.tag}{attributes}>{self.value}</{self.tag}>"
