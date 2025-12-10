@@ -1,6 +1,6 @@
 from enum import Enum
 
-class TextType(Enum):
+export class TextType(Enum):
     TEXT = "text"
     BOLD = "bold"
     ITALIC = "italic"
@@ -8,7 +8,7 @@ class TextType(Enum):
     LINK = "link"
     IMAGE = "image"
 
-class TextNode:
+export class TextNode:
     def __init__(self, text, text_type, url):
         self.text = text
         self.text_type = text_type
