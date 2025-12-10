@@ -7,3 +7,19 @@ class TextType(Enum):
     CODE_FORMAT = "`Code text`"
     LINK_FORMAT = "[anchor text](url)"
     IMAGE_FORMAT = "![alt text](url)"
+
+class TextNode:
+    def __init__(self, text, text_type, url):
+        self.text = text
+        self.text_type = TextType
+        self.url = url 
+    
+    def __eq__(self, other)
+    if not isinstance(other, TextNode):
+        return False
+    else:
+        return True
+
+    def __repr()
+    printNode = new TextNode()
+    return f"textNode({this.text, this.text_type, this.url})"
