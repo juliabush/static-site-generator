@@ -19,3 +19,43 @@ def split_nodes_delimiter(old_nodes, delimiter, text_type):
                     node = TextNode(part, text_type)
                     new_nodes.append(node)
     return new_nodes
+
+def split_nodes_image(old_nodes):
+    new_nodes = []
+    for old_node in old_nodes:
+        if old_node is not TextType.IMAGE:
+            new_nodes.append(old_node)
+        else:
+            parts = old_node.text.split()
+            if len(parts) % 2 == 0:
+                raise Exception("invalid markdown syntax")
+            for index, part in enumerate(parts):
+                if part == "":
+                    continue
+                if index % 2 == 0:
+                    node = TextNode(part, TextType.TEXT)
+                    new_nodes.append(node)
+                else:
+                    node = TextNode(part, TextType.IMAGE)
+                    new_nodes.append(node)
+    return new_nodes
+
+def split_nodes_link(old_nodes):
+    new_nodes = []
+    for old_node in old_nodes:
+        if old_node is not TextType.LINK:
+            new_nodes.append(old_node)
+        else:
+            parts = old_node.text.split()
+            if len(parts) % 2 == 0:
+                raise Exception("invalid markdown syntax")
+            for index, part in enumerate(parts):
+                if part == "":
+                    continue
+                if index % 2 == 0:
+                    node = TextNode(part, TextType.TEXT)
+                    new_nodes.append(node)
+                else:
+                    node = TextNode(part, TextType.LINK)
+                    new_nodes.append(node)
+    return new_nodes
