@@ -1,8 +1,13 @@
 import os
+import sys
 from markdown_to_html import markdown_to_html_node
 from htmlnode import HTMLNode
 from extract_markdown import extract_title
 
+if len(sys.argv) > 1:
+    basepath = sys.argv[1]
+else:
+    basepath = "/"
 
 def generate_page(from_path, template_path, dest_path):
     print(f"Generating page from {from_path} to {dest_path} using {template_path}")
@@ -15,6 +20,8 @@ def generate_page(from_path, template_path, dest_path):
     title = extract_title(from_contents)
     template_contents = template_contents.replace("{{ Title }}", title)
     template_contents = template_contents.replace("{{ Content }}", html_string)
+    template_contents  = template_contents.replace('href="/', f'href="{basepath}')
+    template_contents  = template_contents.replace('src="/', f'src="{basepath}')
     dest_dir = os.path.dirname(dest_path)
     if dest_dir != "":
         os.makedirs(dest_dir, exist_ok=True)
