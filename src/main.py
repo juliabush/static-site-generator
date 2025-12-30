@@ -1,7 +1,14 @@
 import shutil
 import os
+import sys
 from textnode import TextNode, TextType
 from generate_page import generate_pages_recursive
+
+
+if len(sys.argv) > 1:
+    basepath = sys.argv[1]
+else:
+    basepath = "/"
 
 def main():
     textNodeObject = TextNode("This is some anchor text", TextType.LINK , "https://www.boot.dev")
@@ -24,5 +31,5 @@ def recursive_copy(source_path, destination_path):
             full_destination = os.path.join(destination_path, file_path)
             recursive_copy(full_source, full_destination)
 
-recursive_copy("static", "public")
-generate_pages_recursive("content", "template.html", "public")
+recursive_copy("static", "docs")
+generate_pages_recursive("content", "template.html", "docs", basepath)
