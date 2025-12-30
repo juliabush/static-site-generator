@@ -1,7 +1,7 @@
 import shutil
 import os
 from textnode import TextNode, TextType
-from generate_page import generate_page
+from generate_page import generate_pages_recursive
 
 def main():
     textNodeObject = TextNode("This is some anchor text", TextType.LINK , "https://www.boot.dev")
@@ -20,10 +20,9 @@ def recursive_copy(source_path, destination_path):
         if os.path.isfile(extended_path) == True:
             shutil.copy(extended_path, destination_path)
         else:
-            # final_path = os.path.join(source_path, file_path)
             full_source = extended_path
             full_destination = os.path.join(destination_path, file_path)
             recursive_copy(full_source, full_destination)
 
 recursive_copy("static", "public")
-generate_page("content/index.md", "template.html", "public/index.html")
+generate_pages_recursive("content", "template.html", "public")
