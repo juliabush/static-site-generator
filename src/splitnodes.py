@@ -65,6 +65,7 @@ def split_nodes_link(old_nodes):
 
         if not links:
             new_nodes.append(old_node)
+            continue
 
         current_text = text_to_process
         for alt, url in links:
