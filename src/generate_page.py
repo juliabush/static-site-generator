@@ -9,7 +9,7 @@ if len(sys.argv) > 1:
 else:
     basepath = "/"
 
-def generate_page(from_path, template_path, dest_path):
+def generate_page(from_path, template_path, dest_path, basepath):
     print(f"Generating page from {from_path} to {dest_path} using {template_path}")
     with open(from_path, "r") as f:
         from_contents = f.read()
@@ -29,13 +29,13 @@ def generate_page(from_path, template_path, dest_path):
         d.write(template_contents)
 
 
-def generate_pages_recursive(dir_path_content, template_path, dest_dir_path):
+def generate_pages_recursive(dir_path_content, template_path, dest_dir_path, basepath):
     for file in os.listdir(dir_path_content):
         file_path = os.path.join(dir_path_content, file)
         destination_path = os.path.join(dest_dir_path, file)
         if os.path.isfile(file_path):
             if file_path.endswith(".md"):
                 html_path = destination_path.replace(".md", ".html")
-                generate_page(file_path, template_path, html_path)
+                generate_page(file_path, template_path, html_path, basepath)
         else:
-            generate_pages_recursive(file_path, template_path, destination_path)
+            generate_pages_recursive(file_path, template_path, destination_path, basepath)
