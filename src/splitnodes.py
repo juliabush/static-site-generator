@@ -26,34 +26,61 @@ def split_nodes_image(old_nodes):
     for old_node in old_nodes:
         if old_node.text_type is not TextType.TEXT:
             new_nodes.append(old_node)
-        else:
-           text = old_node.text
-           images = extract_markdown_images(text)
-           for alt, url in images:
-            markdown = f"![{alt}]({url})"
-            before, after = text.split(markdown, 1)
-            if before != "":
-                new_nodes.append(TextNode(before, TextType.TEXT))
+            continue
+
+        text_to_process = old_node.text
+        images = extract_markdown_images(text_to_process)
+
+        if not images:
+            new_nodes.append(old_node)
+            continue
+
+        current_text = text_to_process
+        for alt, url in images:
+            image_markdown = f"![{alt}]({url})"
+            parts = current_text.split(image_markdown, 1) 
+
+            if parts[0]: 
+                new_nodes.append(TextNode(parts[0], TextType.TEXT))
+            
             new_nodes.append(TextNode(alt, TextType.IMAGE, url))
-            text = after
+            
+            current_text = parts[1]
+        
+        if current_text:
+            new_nodes.append(TextNode(current_text, TextType.TEXT))
+            
     return new_nodes
+
 
 def split_nodes_link(old_nodes):
     new_nodes = []
     for old_node in old_nodes:
         if old_node.text_type is not TextType.TEXT:
             new_nodes.append(old_node)
-        else:
-           text = old_node.text
-           images = extract_markdown_links(text)
-           for alt, url in images:
-            markdown = f"[{alt}]({url})"
-            before, after = text.split(markdown, 1)
-            if before != "":
-                new_nodes.append(TextNode(before, TextType.TEXT))
+            continue
+
+        text_to_process = old_node.text
+        links = extract_markdown_links(text_to_process)
+
+        if not links:
+            new_nodes.append(old_node)
+
+        current_text = text_to_process
+        for alt, url in links:
+            image_markdown = f"[{alt}]({url})"
+            parts = current_text.split(image_markdown, 1) 
+
+            if parts[0]: 
+                new_nodes.append(TextNode(parts[0], TextType.TEXT))
+            
             new_nodes.append(TextNode(alt, TextType.LINK, url))
-            text = after
-            new_nodes.append(TextNode(after, TextType.TEXT))
+            
+            current_text = parts[1]
+        
+        if current_text:
+            new_nodes.append(TextNode(current_text, TextType.TEXT))
+            
     return new_nodes
 
 def text_to_textnodes(text):
