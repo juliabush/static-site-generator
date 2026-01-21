@@ -1,3 +1,6 @@
+![Tests](https://github.com/juliabush/static-site-generator/actions/workflows/tests.yml/badge.svg)
+![Coverage](https://codecov.io/gh/juliabush/static-site-generator/branch/main/graph/badge.svg)
+
 # Static Site Generator in Python - Backend
 
 A lightweight static site generator written entirely in Python.
@@ -9,7 +12,6 @@ It converts Markdown (.md) files into full HTML pages using a custom-built Markd
 
 * Supports:
 * Headings (`# syntax`)
-
   - Paragraphs
   - Code blocks (```)
   - Blockquotes (`>`)
@@ -21,11 +23,9 @@ It converts Markdown (.md) files into full HTML pages using a custom-built Markd
   - Uses `HTMLNode`, `ParentNode`, and `LeafNode` classes to represent and render HTML elements programmatically.
 
 - **Recursive Site Builder**
-
   - Walks through your `/content` directory, converts every Markdown file to HTML, and applies a shared HTML template.
 
 - **Template Rendering**
-
   - Injects Markdown-generated HTML and page titles into an HTML template (`template.html`) using placeholders:
     ```
     {{ Title }}
@@ -33,11 +33,9 @@ It converts Markdown (.md) files into full HTML pages using a custom-built Markd
     ```
 
 - **No Dependencies**
-
   - Built entirely with the Python 3 standard library — no external packages required.
 
 - **Fully Unit Tested**
-
   - Comprehensive tests for Markdown parsing and HTML generation ensure reliability.
 
   ### ⚙️ How It Works (Behind the Scenes)
