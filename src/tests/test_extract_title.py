@@ -1,6 +1,6 @@
 import unittest
 
-from extract_markdown import extract_title
+from src.extract_markdown import extract_title
 
 class TestExtractTitle(unittest.TestCase):
     def test_title_extraction(self):

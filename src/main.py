@@ -1,8 +1,8 @@
 import shutil
 import os
 import sys
-from textnode import TextNode, TextType
-from generate_page import generate_pages_recursive
+from .textnode import TextNode, TextType
+from .generate_page import generate_pages_recursive
 
 
 if len(sys.argv) > 1:

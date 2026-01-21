@@ -1,9 +1,9 @@
 import unittest
 
-from blocktype import block_to_block_type, BlockType
+from src.blocktype import block_to_block_type, BlockType
 
 class TestBlockType(unittest.TestCase):
-    def test_block_to_block_type_heading():
+    def test_block_to_block_type_heading(self):
         block = "# My heading"
         assert block_to_block_type(block) == BlockType.HEADING
 

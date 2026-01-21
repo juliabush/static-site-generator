@@ -1,8 +1,8 @@
 import os
 import sys
-from markdown_to_html import markdown_to_html_node
-from htmlnode import HTMLNode
-from extract_markdown import extract_title
+from .markdown_to_html import markdown_to_html_node
+from .htmlnode import HTMLNode
+from .extract_markdown import extract_title
 
 if len(sys.argv) > 1:
     basepath = sys.argv[1]

@@ -2,7 +2,7 @@ import unittest
 import os
 import tempfile
 
-from generate import generate_page
+from src.generate_page import generate_page
 
 class TestGeneratePage(unittest.TestCase):
     def test_generate_page_creates_html(self):

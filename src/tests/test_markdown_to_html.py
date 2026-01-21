@@ -1,6 +1,6 @@
 import unittest
-from markdown_to_html import markdown_to_html_node
-from htmlnode import HTMLNode, LeafNode
+from src.markdown_to_html import markdown_to_html_node
+from src.htmlnode import HTMLNode, LeafNode
 
 class TestMarkdownToHTMLNode(unittest.TestCase):
     def test_paragraph_conversion(self):
